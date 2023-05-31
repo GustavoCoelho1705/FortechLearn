@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="hibernate.connection.url">jdbc:sqlserver://Gustavo\SQLEXPRESS;databaseName=master;integratedSecurity=true;</property>
+        <property name="hibernate.connection.username">Gustavo</property>
+        <property name="hibernate.connection.password">Gstv1705%</property>
+        
+        <!-- Outras configurações do Hibernate -->
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <property name="hibernate.show_sql">true</property>
+        <!-- ... outras configurações ... -->
+    </session-factory>
+</hibernate-configuration>
