@@ -1,7 +1,14 @@
 
   package com.fortech;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.swing.*;
+
+import com.fortech.model.Usuario;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,12 +54,18 @@ public class TelaLoginAdmin extends JFrame {
                 String email = campoUsuario.getText();
                 String senha = new String(campoSenha.getPassword());
                 
-                if (email.equals("admin") && senha.equals("admin")) {
-                    JOptionPane.showMessageDialog(null, "Login de administrador bem-sucedido!");
+                Usuario usuario = PesquisaUsuarioBD(email, senha);
+                if (usuario != null) {
+                    if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
+                        JOptionPane.showMessageDialog(null, "Login de administrador bem-sucedido!");
 
-                    abrirTelaMenuAdmin();
+                        // Abre a tela de menu após o login ser bem-sucedido
+                        abrirTelaMenuAdmin();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Usuário ou senha do ADM incorretos!");
+                    }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Usuário ou senha de administrador incorretos!");
+                    JOptionPane.showMessageDialog(null, "Usuário ou senha do ADM incorretos!");
                 }
             }
         });
@@ -70,6 +83,25 @@ public class TelaLoginAdmin extends JFrame {
     private void abrirTelaMenuAdmin() {
         dispose(); // Fecha a tela de login do administrador
         new TelaMenuAdmin(); // Abre a tela de menu do administrador
+    }
+
+    private Usuario PesquisaUsuarioBD(String email, String senha) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("fortech-jpa");
+        EntityManager em = emf.createEntityManager();
+        String sql = "SELECT * FROM usuarios WHERE senha = :senha AND email = :email AND Administrador = :adm";
+
+        Query query = em.createNativeQuery(sql, Usuario.class);
+        query.setParameter("senha", senha);
+        query.setParameter("email", email);
+        query.setParameter("adm", true);
+        try {
+            Usuario resultados = (Usuario) query.getSingleResult();
+            em.close();
+            return resultados;
+        } catch (Exception ex) {
+            em.close();
+            return null;
+        }
     }
 }
 

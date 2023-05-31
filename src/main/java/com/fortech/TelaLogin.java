@@ -146,11 +146,12 @@ public class TelaLogin extends JFrame {
     private Usuario PesquisaUsuarioBD(String email, String senha) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("fortech-jpa");
         EntityManager em = emf.createEntityManager();
-        String sql = "SELECT * FROM usuarios WHERE senha = :senha AND email = :email";
+        String sql = "SELECT * FROM usuarios WHERE senha = :senha AND email = :email AND Administrador = :adm";
 
         Query query = em.createNativeQuery(sql, Usuario.class);
         query.setParameter("senha", senha);
         query.setParameter("email", email);
+        query.setParameter("adm", false);
         try {
             Usuario resultados = (Usuario) query.getSingleResult();
             em.close();
