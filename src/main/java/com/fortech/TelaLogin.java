@@ -34,9 +34,12 @@ public class TelaLogin extends JFrame {
                 }
             }
         };
-        painel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        painel.setLayout(new BorderLayout(0, 20));
 
         Color corTexto = Color.BLACK; // Cor das escritas
+
+        JPanel painelForm = new JPanel(new GridLayout(2, 2, 0, 10));
+        painelForm.setOpaque(false);
 
         JLabel labelUsuario = new JLabel("Email:");
         labelUsuario.setFont(new Font("Arial", Font.BOLD, 18));
@@ -54,6 +57,11 @@ public class TelaLogin extends JFrame {
         campoSenha.setBackground(new Color(255, 255, 255, 150)); // Cor do campo de texto (Branco com transparência)
         campoSenha.setFont(new Font("Arial", Font.PLAIN, 18));
 
+        painelForm.add(labelUsuario);
+        painelForm.add(campoUsuario);
+        painelForm.add(labelSenha);
+        painelForm.add(campoSenha);
+
         JButton botaoLogin = new JButton("Login");
         botaoLogin.setBackground(campoSenha.getBackground()); // Mesma cor da caixa de senha
         botaoLogin.setForeground(corTexto);
@@ -63,9 +71,9 @@ public class TelaLogin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String email = campoUsuario.getText();
                 String senha = new String(campoSenha.getPassword());
-                
+
                 Usuario usuario = PesquisaUsuarioBD(email, senha);
-                if(usuario != null) {
+                if (usuario != null) {
                     if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
                         JOptionPane.showMessageDialog(null, "Login bem-sucedido!");
 
@@ -74,8 +82,7 @@ public class TelaLogin extends JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!");
                     }
-                }
-                else {
+                } else {
                     JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!");
                 }
             }
@@ -93,15 +100,37 @@ public class TelaLogin extends JFrame {
             }
         });
 
-        painel.add(labelUsuario);
-        painel.add(campoUsuario);
-        painel.add(labelSenha);
-        painel.add(campoSenha);
-        painel.add(botaoLogin);
-        painel.add(botaoCadastrar);
+        JPanel painelBotoes = new JPanel(new GridLayout(2, 1, 0, 10));
+        painelBotoes.setOpaque(false);
+        painelBotoes.add(botaoLogin);
+        painelBotoes.add(botaoCadastrar);
+
+        JButton botaoAdmin = new JButton("Admin");
+        botaoAdmin.setBackground(campoSenha.getBackground());
+        botaoAdmin.setForeground(corTexto);
+        botaoAdmin.setFont(new Font("Arial", Font.BOLD, 18));
+        botaoAdmin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirTelaLoginAdmin();
+            }
+        });
+
+        JPanel painelBotoesAdmin = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        painelBotoesAdmin.setOpaque(false);
+        painelBotoesAdmin.add(botaoAdmin);
+
+        painel.add(painelForm, BorderLayout.CENTER);
+        painel.add(painelBotoes, BorderLayout.SOUTH);
+        painel.add(painelBotoesAdmin, BorderLayout.NORTH);
 
         setContentPane(painel);
         setVisible(true);
+    }
+
+    private void abrirTelaLoginAdmin() {
+        dispose(); // Fecha a tela de login
+        new TelaLoginAdmin(); // Abre a tela de login do administrador
     }
 
     private void abrirTelaMenu() {
@@ -113,8 +142,8 @@ public class TelaLogin extends JFrame {
         dispose(); // Fecha a tela de login
         new TelaCadastro(this); // Abre a tela de cadastro
     }
-    private Usuario PesquisaUsuarioBD(String email, String senha)
-    {
+
+    private Usuario PesquisaUsuarioBD(String email, String senha) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("fortech-jpa");
         EntityManager em = emf.createEntityManager();
         String sql = "SELECT * FROM usuarios WHERE senha = :senha AND email = :email";
@@ -123,16 +152,13 @@ public class TelaLogin extends JFrame {
         query.setParameter("senha", senha);
         query.setParameter("email", email);
         try {
-            Usuario resultados = (Usuario)query.getSingleResult();
+            Usuario resultados = (Usuario) query.getSingleResult();
             em.close();
             return resultados;
-        }
-        catch(Exception ex) {
+        } catch (Exception ex) {
             em.close();
             return null;
         }
-        
+
     }
 }
-
-
