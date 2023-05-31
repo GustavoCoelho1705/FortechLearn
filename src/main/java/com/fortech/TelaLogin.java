@@ -16,7 +16,7 @@ public class TelaLogin extends JFrame {
     private JPasswordField campoSenha;
 
     public TelaLogin() {
-        super("Login");
+        super("Logar");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
         setLocationRelativeTo(null);
