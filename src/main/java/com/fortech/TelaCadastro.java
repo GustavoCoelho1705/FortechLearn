@@ -139,6 +139,7 @@ public class TelaCadastro extends JFrame {
         }
         catch(Exception ex) {
             em.getTransaction().commit();
+            
             return false;
         }
 
