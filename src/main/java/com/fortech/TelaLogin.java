@@ -77,7 +77,7 @@ public class TelaLogin extends JFrame {
                     if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
                         JOptionPane.showMessageDialog(null, "Login bem-sucedido!");
 
-                        // Abre a tela de menu após o login ser bem-sucedido
+                    
                         abrirTelaMenu();
                     } else {
                         JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!");
@@ -120,9 +120,18 @@ public class TelaLogin extends JFrame {
         painelBotoesAdmin.setOpaque(false);
         painelBotoesAdmin.add(botaoAdmin);
 
-        painel.add(painelForm, BorderLayout.CENTER);
-        painel.add(painelBotoes, BorderLayout.SOUTH);
-        painel.add(painelBotoesAdmin, BorderLayout.NORTH);
+        JPanel painelPrincipal = new JPanel(new BorderLayout());
+        painelPrincipal.setOpaque(false);
+        painelPrincipal.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+        painelPrincipal.add(painelForm, BorderLayout.CENTER);
+        painelPrincipal.add(painelBotoes, BorderLayout.SOUTH);
+
+        JPanel painelConteudo = new JPanel(new BorderLayout());
+        painelConteudo.setOpaque(false);
+        painelConteudo.add(painelPrincipal, BorderLayout.CENTER);
+        painelConteudo.add(painelBotoesAdmin, BorderLayout.NORTH);
+
+        painel.add(painelConteudo, BorderLayout.CENTER);
 
         setContentPane(painel);
         setVisible(true);

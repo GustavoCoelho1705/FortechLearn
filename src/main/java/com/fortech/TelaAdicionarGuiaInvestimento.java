@@ -61,7 +61,7 @@ public class TelaAdicionarGuiaInvestimento extends JFrame {
                 else {
                     JOptionPane.showMessageDialog(null, "Erro ao salvar guia de investimento");
                 }
-                // Limpar os campos após salvar
+                
                 campoTitulo.setText("");
                 areaDescricao.setText("");
             }
