@@ -16,11 +16,13 @@ public class TelaMenuAdmin extends JFrame {
         painel.setLayout(new GridLayout(4, 1, 10, 10));
         painel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
+        JButton botaoCadastrarAdm = new JButton("Cadastrar Administrador");        
         JButton botaoAdicionarGuia = new JButton("Adicionar Guia de Investimento");
         JButton botaoAdicionarVagas = new JButton("Adicionar Vagas de Emprego");
         JButton botaoAdicionarCursos = new JButton("Adicionar Cursos");
         JButton botaoVoltar = new JButton("Voltar");
 
+        botaoCadastrarAdm.setFont(new Font("Arial", Font.PLAIN, 18));
         botaoAdicionarGuia.setFont(new Font("Arial", Font.PLAIN, 18));
         botaoAdicionarVagas.setFont(new Font("Arial", Font.PLAIN, 18));
         botaoAdicionarCursos.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -30,6 +32,15 @@ public class TelaMenuAdmin extends JFrame {
         painel.add(botaoAdicionarVagas);
         painel.add(botaoAdicionarCursos);
         painel.add(botaoVoltar);
+        painel.add(botaoCadastrarAdm);
+
+        botaoCadastrarAdm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                abrirTelaCadastroAdm();
+            }
+        });
+        
 
         botaoAdicionarGuia.addActionListener(new ActionListener() {
             @Override
@@ -83,4 +94,10 @@ public class TelaMenuAdmin extends JFrame {
         TelaLogin telaLogin = new TelaLogin();
         telaLogin.setVisible(true);
     }
+
+    private void abrirTelaCadastroAdm() {
+        dispose();
+        new TelaCadastroAdm();
+    }
+    
 }
