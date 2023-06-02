@@ -133,7 +133,7 @@ public class TelaCadastro extends JFrame {
         u.setEmail(email);
         u.setSenha(senha);
         try {
-            em.persist(em);
+            em.persist(u);
             em.getTransaction().commit();
             return true;
         }
