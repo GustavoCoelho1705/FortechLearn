@@ -1,6 +1,12 @@
 package com.fortech;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.swing.*;
+
+import com.fortech.model.Conteudos;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,12 +52,16 @@ public class TelaAdicionarCurso extends JFrame {
                 String titulo = campoTitulo.getText();
                 String descricao = areaDescricao.getText();
 
-                // Aqui você pode fazer o tratamento dos dados (salvar no banco de dados, por exemplo)
+                Boolean retorno = InserirCurso(titulo, descricao);
 
-                // Exemplo de exibição dos dados salvos em uma nova janela
-                JOptionPane.showMessageDialog(null, "Curso salvo:\n\nTítulo: " + titulo + "\nDescrição: " + descricao);
+                if(retorno) {
 
-                // Limpar os campos após salvar
+                    JOptionPane.showMessageDialog(null, "Curso salvo:\n\nTítulo: " + titulo + "\nDescrição: " + descricao);
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Erro ao salvar curso: " + titulo + "\n");
+                }
+
                 campoTitulo.setText("");
                 areaDescricao.setText("");
             }
@@ -71,5 +81,29 @@ public class TelaAdicionarCurso extends JFrame {
     private void voltarTelaMenuAdmin() {
         dispose();
         new TelaMenuAdmin();
+    }
+    private Boolean InserirCurso(String titulo, String descricao) 
+    {
+        Conteudos c = new Conteudos();
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("fortech-jpa");
+        EntityManager em = emf.createEntityManager();
+
+        c.setTitulo(titulo);
+        c.setConteudo(descricao);
+        c.setModulo("Cursos");
+
+        em.getTransaction().begin();
+        
+        try {
+            em.persist(c);
+            em.getTransaction().commit();
+            return true;
+        }
+        catch(Exception ex) {
+            em.getTransaction().commit();
+            
+            return false;
+        }
     }
 }
