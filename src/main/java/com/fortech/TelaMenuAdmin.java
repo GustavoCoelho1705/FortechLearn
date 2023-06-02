@@ -9,38 +9,56 @@ public class TelaMenuAdmin extends JFrame {
     public TelaMenuAdmin() {
         super("Menu Administrador");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
+        setSize(400, 500);
         setLocationRelativeTo(null);
+        setResizable(false);
 
-        JPanel painel = new JPanel();
-        painel.setLayout(new GridLayout(4, 1, 10, 10));
-        painel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        JButton botaoCadastrarAdm = new JButton("Cadastrar Administrador");        
+        JPanel painelFundo = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon imagemFundo = new ImageIcon("caminho/para/a/imagem.jpg"); // Substitua pelo caminho da imagem desejada
+                g.drawImage(imagemFundo.getImage(), 0, 0, null);
+            }
+        };
+        painelFundo.setLayout(null);
+
+        // Configuração dos botões
+        JButton botaoCadastrarAdm = new JButton("Cadastrar Administrador");
+        botaoCadastrarAdm.setBounds(50, 100, 300, 40);
+        botaoCadastrarAdm.setFont(new Font("Arial", Font.BOLD, 18));
+
         JButton botaoAdicionarGuia = new JButton("Adicionar Guia de Investimento");
+        botaoAdicionarGuia.setBounds(50, 160, 300, 40);
+        botaoAdicionarGuia.setFont(new Font("Arial", Font.BOLD, 18));
+
         JButton botaoAdicionarVagas = new JButton("Adicionar Vagas de Emprego");
+        botaoAdicionarVagas.setBounds(50, 220, 300, 40);
+        botaoAdicionarVagas.setFont(new Font("Arial", Font.BOLD, 18));
+
         JButton botaoAdicionarCursos = new JButton("Adicionar Cursos");
+        botaoAdicionarCursos.setBounds(50, 280, 300, 40);
+        botaoAdicionarCursos.setFont(new Font("Arial", Font.BOLD, 18));
+
         JButton botaoVoltar = new JButton("Voltar");
+        botaoVoltar.setBounds(50, 340, 300, 40);
+        botaoVoltar.setFont(new Font("Arial", Font.BOLD, 18));
 
-        botaoCadastrarAdm.setFont(new Font("Arial", Font.PLAIN, 18));
-        botaoAdicionarGuia.setFont(new Font("Arial", Font.PLAIN, 18));
-        botaoAdicionarVagas.setFont(new Font("Arial", Font.PLAIN, 18));
-        botaoAdicionarCursos.setFont(new Font("Arial", Font.PLAIN, 18));
-        botaoVoltar.setFont(new Font("Arial", Font.PLAIN, 18));
+        // Adiciona os botões ao painel de fundo
+        painelFundo.add(botaoCadastrarAdm);
+        painelFundo.add(botaoAdicionarGuia);
+        painelFundo.add(botaoAdicionarVagas);
+        painelFundo.add(botaoAdicionarCursos);
+        painelFundo.add(botaoVoltar);
 
-        painel.add(botaoAdicionarGuia);
-        painel.add(botaoAdicionarVagas);
-        painel.add(botaoAdicionarCursos);
-        painel.add(botaoVoltar);
-        painel.add(botaoCadastrarAdm);
-
+        // Configuração dos eventos dos botões
         botaoCadastrarAdm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 abrirTelaCadastroAdm();
             }
         });
-        
 
         botaoAdicionarGuia.addActionListener(new ActionListener() {
             @Override
@@ -70,7 +88,8 @@ public class TelaMenuAdmin extends JFrame {
             }
         });
 
-        setContentPane(painel);
+        // Define o painel de fundo como conteúdo do JFrame
+        setContentPane(painelFundo);
         setVisible(true);
     }
 
@@ -99,5 +118,13 @@ public class TelaMenuAdmin extends JFrame {
         dispose();
         new TelaCadastroAdm();
     }
-    
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new TelaMenuAdmin();
+            }
+        });
+    }
 }
