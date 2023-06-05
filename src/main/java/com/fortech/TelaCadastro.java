@@ -26,7 +26,7 @@ public class TelaCadastro extends JFrame {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 try {
-                    String imagePath = getClass().getClassLoader().getResource("img/Wallpaper.jpg").getPath();
+                    String imagePath = getClass().getClassLoader().getResource("com/fortech/img/Wallpaper.jpg").getPath();
                     Image image = new ImageIcon(imagePath).getImage();
                     g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
                 } catch (Exception e) {
