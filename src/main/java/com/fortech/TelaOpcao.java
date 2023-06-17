@@ -47,7 +47,19 @@ public class TelaOpcao extends JFrame {
         
         List<Conteudos> list = PesquisaConteudoBD(modulo);
         
-        JPanel painelAccordions = new JPanel();
+        JPanel painelAccordions = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                try {
+                    String imagePath = getClass().getClassLoader().getResource("com/fortech/img/Wallpaper.jpg").getPath();
+                    Image image = new ImageIcon(imagePath).getImage();
+                    g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
         painelAccordions.setLayout(new BoxLayout(painelAccordions, BoxLayout.Y_AXIS));
         
         for (Conteudos conteudo : list) {

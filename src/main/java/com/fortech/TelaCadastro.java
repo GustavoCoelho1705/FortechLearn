@@ -36,14 +36,14 @@ public class TelaCadastro extends JFrame {
         };
         painel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
-        Color corTexto = Color.BLACK;
+        Color corTexto = Color.WHITE;
 
         JLabel labelNome = new JLabel("Nome:");
         labelNome.setFont(new Font("Arial", Font.BOLD, 18));
         labelNome.setForeground(corTexto);
         final JTextField campoNome = new JTextField(20);
         campoNome.setForeground(Color.BLACK);
-        campoNome.setBackground(new Color(255, 255, 255, 150));
+        campoNome.setBackground(new Color(255, 255, 255));
         campoNome.setFont(new Font("Arial", Font.PLAIN, 18));
     
         JLabel labelEmail = new JLabel("Email:");
@@ -51,7 +51,7 @@ public class TelaCadastro extends JFrame {
         labelEmail.setForeground(corTexto);
         final JTextField campoEmail = new JTextField(20);
         campoEmail.setForeground(Color.BLACK);
-        campoEmail.setBackground(new Color(255, 255, 255, 150));
+        campoEmail.setBackground(new Color(255, 255, 255));
         campoEmail.setFont(new Font("Arial", Font.PLAIN, 18));
     
         JLabel labelSenha = new JLabel("Senha:");
@@ -59,7 +59,7 @@ public class TelaCadastro extends JFrame {
         labelSenha.setForeground(corTexto);
         final JPasswordField campoSenha = new JPasswordField(20);
         campoSenha.setForeground(Color.BLACK);
-        campoSenha.setBackground(new Color(255, 255, 255, 150));
+        campoSenha.setBackground(new Color(255, 255, 255));
         campoSenha.setFont(new Font("Arial", Font.PLAIN, 18));
     
         JLabel labelConfirmarSenha = new JLabel("Confirmar Senha:");
@@ -67,12 +67,12 @@ public class TelaCadastro extends JFrame {
         labelConfirmarSenha.setForeground(corTexto);
         final JPasswordField campoConfirmarSenha = new JPasswordField(20);
         campoConfirmarSenha.setForeground(Color.BLACK);
-        campoConfirmarSenha.setBackground(new Color(255, 255, 255, 150));
+        campoConfirmarSenha.setBackground(new Color(255, 255, 255));
         campoConfirmarSenha.setFont(new Font("Arial", Font.PLAIN, 18));
 
         JButton botaoCadastrar = new JButton("Cadastrar");
-        botaoCadastrar.setBackground(new Color(255, 255, 255, 150));
-        botaoCadastrar.setForeground(corTexto);
+        botaoCadastrar.setBackground(new Color(255, 255, 255));
+        botaoCadastrar.setForeground(Color.BLACK);
         botaoCadastrar.setFont(new Font("Arial", Font.BOLD, 18));
         botaoCadastrar.addActionListener(new ActionListener() {
             @Override

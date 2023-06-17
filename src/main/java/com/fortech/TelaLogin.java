@@ -46,7 +46,7 @@ public class TelaLogin extends JFrame {
         labelUsuario.setForeground(corTexto);
         campoUsuario = new JTextField(20);
         campoUsuario.setForeground(Color.BLACK);
-        campoUsuario.setBackground(new Color(255, 255, 255, 150)); // Cor do campo de texto (Branco com transparência)
+        campoUsuario.setBackground(new Color(255, 255, 255)); // Cor do campo de texto (Branco com transparência)
         campoUsuario.setFont(new Font("Arial", Font.PLAIN, 18));
 
         JLabel labelSenha = new JLabel("Senha:");
@@ -54,7 +54,7 @@ public class TelaLogin extends JFrame {
         labelSenha.setForeground(corTexto);
         campoSenha = new JPasswordField(20);
         campoSenha.setForeground(Color.BLACK);
-        campoSenha.setBackground(new Color(255, 255, 255, 150)); // Cor do campo de texto (Branco com transparência)
+        campoSenha.setBackground(new Color(255, 255, 255)); // Cor do campo de texto (Branco com transparência)
         campoSenha.setFont(new Font("Arial", Font.PLAIN, 18));
 
         painelForm.add(labelUsuario);

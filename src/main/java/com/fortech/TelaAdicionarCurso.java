@@ -18,7 +18,14 @@ public class TelaAdicionarCurso extends JFrame {
         setSize(400, 300);
         setLocationRelativeTo(null);
 
-        JPanel painel = new JPanel();
+        JPanel painel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon imagemFundo = new ImageIcon(getClass().getClassLoader().getResource("com/fortech/img/Wallpaper.jpg"));
+                g.drawImage(imagemFundo.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
         painel.setLayout(new BorderLayout());
         painel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 

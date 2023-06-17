@@ -18,8 +18,8 @@ public class TelaMenuAdmin extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon imagemFundo = new ImageIcon("caminho/para/a/imagem.jpg"); // Substitua pelo caminho da imagem desejada
-                g.drawImage(imagemFundo.getImage(), 0, 0, null);
+                ImageIcon imagemFundo = new ImageIcon(getClass().getClassLoader().getResource("com/fortech/img/Wallpaper.jpg"));
+                g.drawImage(imagemFundo.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
         painelFundo.setLayout(null);

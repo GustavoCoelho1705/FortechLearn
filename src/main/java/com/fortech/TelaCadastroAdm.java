@@ -22,19 +22,28 @@ public class TelaCadastroAdm extends JFrame {
         setSize(400, 300);
         setLocationRelativeTo(null);
 
-        JPanel painel = new JPanel();
+          JPanel painel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon imagemFundo = new ImageIcon(getClass().getResource("/com/fortech/img/Wallpaper.jpg"));
+                g.drawImage(imagemFundo.getImage(), 0, 0, getWidth(), getHeight(), null);
+            }
+        };
         painel.setLayout(new GridLayout(4, 2, 10, 10));
         painel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-
+        
         JLabel labelNome = new JLabel("Nome:");
+        labelNome.setForeground(Color.WHITE);
         campoNome = new JTextField();
 
         JLabel labelEmail = new JLabel("Email:");
+        labelEmail.setForeground(Color.WHITE);
         campoEmail = new JTextField();
 
         JLabel labelSenha = new JLabel("Senha:");
+        labelSenha.setForeground(Color.WHITE);
         campoSenha = new JPasswordField();
-
         JButton botaoCadastrar = new JButton("Cadastrar");
         JButton botaoCancelar = new JButton("Cancelar");
 

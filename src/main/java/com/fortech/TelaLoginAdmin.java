@@ -23,7 +23,19 @@ public class TelaLoginAdmin extends JFrame {
         setSize(400, 300);
         setLocationRelativeTo(null);
 
-        JPanel painel = new JPanel();
+        JPanel painel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                try {
+                    String imagePath = getClass().getClassLoader().getResource("com/fortech/img/Wallpaper.jpg").getPath();
+                    Image image = new ImageIcon(imagePath).getImage();
+                    g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
         painel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         Color corTexto = Color.BLACK;
@@ -33,7 +45,7 @@ public class TelaLoginAdmin extends JFrame {
         labelUsuario.setForeground(corTexto);
         campoUsuario = new JTextField(20);
         campoUsuario.setForeground(Color.BLACK);
-        campoUsuario.setBackground(new Color(255, 255, 255, 150));
+        campoUsuario.setBackground(new Color(255, 255, 255));
         campoUsuario.setFont(new Font("Arial", Font.PLAIN, 18));
 
         JLabel labelSenha = new JLabel("Senha:");
@@ -41,7 +53,7 @@ public class TelaLoginAdmin extends JFrame {
         labelSenha.setForeground(corTexto);
         campoSenha = new JPasswordField(20);
         campoSenha.setForeground(Color.BLACK);
-        campoSenha.setBackground(new Color(255, 255, 255, 150));
+        campoSenha.setBackground(new Color(255, 255, 255));
         campoSenha.setFont(new Font("Arial", Font.PLAIN, 18));
 
         JButton botaoLogin = new JButton("Login");
