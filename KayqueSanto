@@ -1,0 +1,7 @@
+public class PrintMessage {
+    public static void main(String[] args) {
+        String mensagem = "Meu nome é Kayque, e eu participei do projeto ForTech Learn, realizado para avaliação da Faculdade São Judas";
+        System.out.println(mensagem);
+    }
+}
+ 
